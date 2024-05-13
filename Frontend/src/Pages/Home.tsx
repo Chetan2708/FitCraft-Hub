@@ -6,7 +6,7 @@ const Home : React.FC  = () => {
   // const [exercise, setExercise] = useState([]);
   // const [bodyPart, setBodyPart] = useState("all");
   return (
-    <div className='w-full'>
+    <div className=''>
       <HeroBanner />
       {/* <SearchExercises
       setExercise={setExercise}

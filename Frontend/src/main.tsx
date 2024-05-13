@@ -11,6 +11,11 @@ import {
     QueryClientProvider,
   } from '@tanstack/react-query'
 
+import { Provider } from 'react-redux';
+import {store} from './app/store.ts'
+
+
+
 const router = createBrowserRouter([ 
 
     {
@@ -20,24 +25,27 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <Home />
-            }    
+            } ,
+            {
+                path: "auth",
+                element: <Auth />
+            }
+           
         ]
-    },
-    {
-        path: "auth",
-        element: <Auth />
     }
-
+   
 ])
 
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
+        <Provider store={store}>
          <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen />
          </QueryClientProvider>
+        </Provider>
     </React.StrictMode>
   
 )
