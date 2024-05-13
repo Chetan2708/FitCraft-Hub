@@ -59,7 +59,7 @@ const Auth = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/");
+      navigate("/") ;
 
       localStorage.setItem( 
         "accessToken",
