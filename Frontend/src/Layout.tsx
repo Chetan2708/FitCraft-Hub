@@ -14,7 +14,7 @@ const Layout: React.FC = () => {
   const {error, data } = useQuery({
     queryKey: ["user"],
     queryFn: getCurrentUser,
-    staleTime: 10000,
+    staleTime: Infinity, 
   });
   if (data) {
     dispatch(setLogin(data.user));

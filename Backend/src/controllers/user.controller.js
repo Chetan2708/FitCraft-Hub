@@ -44,7 +44,7 @@ const register = asyncHandler(async (req, res, next) => {
     name,
     email,
     password,
-    pic: pic?.url || "", // Todo:Multer to upload image on cloudinary
+    pic, // Todo:Multer to upload image on cloudinary
   });
   // Return user
   const createdUser = await User.findById(user._id).select(

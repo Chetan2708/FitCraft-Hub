@@ -29,6 +29,7 @@ const userSchema = new mongoose.Schema({
     },
     pic:{
         type: String,
+        default:"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
     refreshToken: {
         type: String
