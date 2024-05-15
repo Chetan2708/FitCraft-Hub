@@ -13,11 +13,11 @@ const HeroBanner: React.FC = () => {
           <br /> not perfection.
         </em>
         <p className="text-xl lg:text-2xl">
-          Check out the best muscle building excercises
+          Check out the best muscle building exercises
         </p>
 
         <button className="bg-red-500 p-4 w-1/2 rounded-2xl text-white hover:bg-red-400">
-          Explore Excercises
+          Explore Exercises
         </button>
         <h1 className="font-bold text-red-700 opacity-10   text-8xl lg:text-[180px] ">
           Exercise
