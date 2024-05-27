@@ -1,26 +1,9 @@
 import axios , { AxiosResponse } from "axios";
 import { LoginType, SignUpType } from "../../definitions";
+import { baseURL } from "../constants";
+import { getAuthHeaders } from "./options";
 
 
-
-const baseURL =
-  process.env.NODE_ENV === "production"
-    ? "/api/v1"
-    : "http://localhost:5000/api/v1";
-
-
-
-const getAuthHeaders = () => {
-  const token = localStorage.getItem("accessToken");
-  if (token) {
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    };
-  }
-  return {};
-};
 /* Sign In and Sign Up */
 export const signIn = (login: LoginType) => axios.post(`${baseURL}/user/login`, login);
 export const signUp = (signup: SignUpType) => axios.post(`${baseURL}/user/register`, signup);
@@ -36,8 +19,14 @@ export const getCurrentUser = async () => {
   }
 };
 
-export const fetchData = async (url:string, options:object) => {
-  const response:AxiosResponse = await axios.get(url, options);
+export const fetchData = async (url:string, options:object ) => {
+  const response:AxiosResponse = await axios.get(url, options  );
   return response.data;
 };
+
+export const fetchPostData = async (url:string, data:object ) => {
+  const response:AxiosResponse = await axios.post(url, data ,getAuthHeaders());
+  return response.data;
+};
+
 

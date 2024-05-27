@@ -7,18 +7,10 @@ import Exercise from '../components/Home/Exercise';
 const Home : React.FC  = () => {  
   // const [bodyPart, setBodyPart] = useState("all");
   return (
-    <div className=''>
+    <div >
       <HeroBanner />
-      <SearchExercises
-      // setExercise={setExercise}
-      // bodyPart={bodyPart}
-      // setBodyPart={setBodyPart}
-      />
-      <Exercise
-            // setExercise={setExercise}
-            // bodyPart={bodyPart}
-            // exercise = {exercise}
-            />
+      <SearchExercises/>
+      <Exercise/>
       </div>
   )
 }

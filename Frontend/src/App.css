@@ -77,3 +77,76 @@ body{
       @apply bg-background text-foreground;
     }
   }
+  
+
+
+  @media (prefers-color-scheme: dark) {
+    .theme-system {
+      background: black;
+      color: #dcb;
+      outline: 5px dashed #000;
+    }
+  }
+
+
+  @keyframes like_effect {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes dislike_effect {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .like-container {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    transition: 100ms;
+  }
+  
+  .like-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .like-checkmark {
+    height: 2em;
+    width: 2em;
+    transition: 100ms;
+    animation: dislike_effect 400ms ease;
+  }
+  
+  .like-container input:checked ~ .like-checkmark path {
+    fill: #FF5353;
+    stroke-width: 0;
+  }
+  
+  .like-container input:checked ~ .like-checkmark {
+    animation: like_effect 400ms ease;
+  }
+  
+  .like-container:hover {
+    transform: scale(1.1);
+  }
+  
+
+

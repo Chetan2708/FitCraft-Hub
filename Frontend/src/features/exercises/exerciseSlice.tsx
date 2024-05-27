@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     exercises: [],
-    bodypart: "all"
+    bodypart: "all",
+    likedExercises:[]
 }
 
 export const exerciseSlice = createSlice({
@@ -14,12 +15,20 @@ export const exerciseSlice = createSlice({
         },
         setBodyPart:(state , action)=>{
             state.bodypart = action.payload
+        },
+        setLikedExercises:(state , action)=>{
+            state.likedExercises = action.payload
+        },
+
+        //reset liked
+        resetLikedExercises:(state)=>{
+            state.likedExercises = []
         }
         
     }
 
 })
 
-export const { setExercises , setBodyPart  } = exerciseSlice.actions
+export const { setExercises , setBodyPart,  setLikedExercises ,  resetLikedExercises } = exerciseSlice.actions
 
 export default exerciseSlice.reducer;

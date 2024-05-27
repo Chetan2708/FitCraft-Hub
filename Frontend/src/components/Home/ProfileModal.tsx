@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "../../utils/components/ui/dialog";
 import {
   Avatar,
@@ -16,13 +17,19 @@ import {
 import { Button } from "../../utils/components/ui/button";
 import { setLogout } from "../../features/user/authenticationSlice";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { resetLikedExercises } from "../../features/exercises/exerciseSlice";
+
 
 const ProfileModal = () => {
   const user = useSelector((state) => state.auth?.userData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleLogout =()=>{
     localStorage.clear()
     dispatch(setLogout())
+    dispatch(resetLikedExercises())
+    
   }
   return (
     <Dialog>
@@ -49,10 +56,21 @@ const ProfileModal = () => {
             </div>
             </DialogDescription>
         </DialogHeader>
-        <DialogFooter>
+        <DialogFooter className="flex justify-between">
+
+        <DialogClose>
+        <Button onClick={
+              ()=>navigate("dashboard")
+              
+              }>
+                Dashboard
+            </Button>
+        </DialogClose>
+
             <Button onClick={handleLogout}>
                 Logout
             </Button>
+
       </DialogFooter>
       </DialogContent>
    

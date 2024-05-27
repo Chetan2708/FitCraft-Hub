@@ -90,10 +90,10 @@ const Auth = () => {
             Signup
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="login" className="w-1/3 mt-32 ">
+        <TabsContent value="login" >
           <Login onLogin={onLogin} />
         </TabsContent>
-        <TabsContent value="signup" className="w-1/3 mt-32 ">
+        <TabsContent value="signup" >
           <Signup onSignup={onSignup} />
         </TabsContent>
       </Tabs>

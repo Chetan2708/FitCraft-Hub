@@ -19,3 +19,5 @@ export interface LoginType {
     pic?: string;
   }
   
+
+
