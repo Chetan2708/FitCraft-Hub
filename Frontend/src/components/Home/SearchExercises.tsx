@@ -14,10 +14,13 @@
     
     const [search, setSearch] = useState<string>("");
     const [allBodyParts , setAllBodyParts] = useState<string[]>([]);
+    console.log(exerciseApiOptions)
     const {error, isLoading, data } = useQuery({
+
       queryKey: ["bodyParts"],
       queryFn: ()=>fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseApiOptions),
       staleTime: Infinity, 
+      refetchOnMount:false,
     });
 
     useEffect(() => {

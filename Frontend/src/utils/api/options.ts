@@ -7,6 +7,7 @@ export const exerciseApiOptions: RequestInit = {
 };
 
 
+
 export const youtubeOptions: RequestInit = {
   headers: {
     "content-type": "application/octet-stream",

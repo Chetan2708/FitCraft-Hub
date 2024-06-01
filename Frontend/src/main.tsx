@@ -18,6 +18,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store } from './app/store.ts';
 import { persistStore } from 'redux-persist';
 import BmiCalculator from './components/BmiCalculator.tsx';
+import CustomSceduler from './components/CustomSceduler.tsx';
+import PersonalTrainer from './components/PersonalTrainer.tsx';
 const router = createBrowserRouter([ 
   {
     path: "/",
@@ -51,6 +53,15 @@ const router = createBrowserRouter([
             path: "bmi-calculator",
             element: <BmiCalculator />
           },
+          {
+            path: "custom-scheduler",
+            element: <CustomSceduler />
+          },
+          {
+            path: "personal-trainer",
+            element: <PersonalTrainer/>
+          },
+
         ],
       },
       {

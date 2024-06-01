@@ -6,8 +6,9 @@ import { FiArrowRight } from "react-icons/fi";
 import like from "../assets/images/Like.jpg";
 import BMI from "../assets/images/BMI.jpg";
 import Scheduler from "../assets/images/Scheduler.jpg";
+import Pt from "../assets/images/Pt.jpg";
 
-const Dashboard = () => {
+const Dashboard :React.FC = () => {
   return (
     <section className="bg-neutral-950 p-4 md:p-8 min-h-screen">
       <div className="mx-auto max-w-5xl">
@@ -28,6 +29,12 @@ const Dashboard = () => {
           subheading="Organize and plan your schedule"
           imgSrc={Scheduler}
           to="custom-scheduler"
+        />
+        <Link
+          heading="Personal Trainer"
+          subheading="Organize and plan your schedule"
+          imgSrc={Pt}
+          to="personal-trainer"
         />
       </div>
     </section>

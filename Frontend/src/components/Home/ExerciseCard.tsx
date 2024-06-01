@@ -27,7 +27,6 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
   const navigate = useNavigate();
   const [liked, setLiked] = useState(false);
   const dispatch = useDispatch();
-
   const {
     error,
     isLoading,
@@ -37,17 +36,24 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
     queryKey: ["watchList"],
     queryFn: () => fetchData(`${baseURL}/watchList/getWatchlist`, getAuthHeaders()),
   });
-
+  
   useEffect(() => {
     if (data) {
       dispatch(setLikedExercises(data.data.exercises));
     }
   }, [data, dispatch]);
-
+  
   const likedExercises = useSelector((state) => state.exercise.likedExercises);
+  const user = useSelector((state)=>state.auth.userData)
   const likedExercisesIds = likedExercises?.map((exercise) => exercise.exerciseID);
 
   useEffect(() => {
+
+    //if no user empty all likes
+    if (!user) {
+      setLiked(false);
+      return;
+    }
     if (likedExercisesIds?.includes(exercise.id)) {
       setLiked(true);
     } else {
@@ -56,7 +62,16 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
   }, [likedExercisesIds, exercise.id]);
 
   const toggleLike = async (e: React.ChangeEvent<HTMLInputElement>) => {
+
+
     e.stopPropagation();
+    
+    //if user instead signup page
+    if (!user) {
+      navigate("/auth");
+      return;
+    }
+    
     setLiked((prevLiked) => !prevLiked);
 
     if (!liked) {
@@ -74,7 +89,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
 
   return (
     <TiltCard>
-      <div className="rounded-2xl shadow-lg bg-white m-4 overflow-hidden transform transition duration-300">
+      <div className="relative rounded-2xl shadow-lg bg-white m-4 overflow-hidden transform transition duration-300">
         <div className="relative">
           <img
             src={exercise.gifUrl}
@@ -88,9 +103,12 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
             <Button className="bg-[#FCC757]">{exercise.target.toUpperCase()}</Button>
             <Button className="bg-[#ee9eab]">{exercise.bodyPart.toUpperCase()}</Button>
           </div>
-          <div className="flex gap-4 items-center">
+          <div >
             <Button onClick={handleExercise}>View Exercise</Button>
-            <label className="like-container">
+           
+          </div>
+          <div className="absolute top-0 right-0 p-4  mr-2 mt-2">
+          <label className="like-container ">
               <input type="checkbox" checked={liked} onChange={toggleLike} />
               <div className="flex items-center justify-center">
                 {liked ? <FcLike /> : <IoMdHeartEmpty />}

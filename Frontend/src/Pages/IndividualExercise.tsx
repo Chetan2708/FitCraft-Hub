@@ -7,9 +7,9 @@ import { exerciseApiOptions, youtubeOptions } from "../utils/api/options";
 import { exercisedburl, youtubeSearchUrl } from "../utils/constants";
 import Loader from "../utils/extras/Loader";
 import Swal from "sweetalert2";
-import SimilarExercise from "../components/IndividualExercise/SimilarExercise";
 
-const IndividualExercise = () => {
+
+const IndividualExercise:React.FC = () => {
   const { id } = useParams();
 
   const {

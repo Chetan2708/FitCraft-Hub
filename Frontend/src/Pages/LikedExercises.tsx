@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import ExerciseCard from '../components/Home/ExerciseCard';
 
-const LikedExercises = () => {
+const LikedExercises:React.FC =  () => {
   const {
     error,
     isLoading,

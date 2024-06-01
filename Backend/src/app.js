@@ -17,8 +17,10 @@ app.use(cookieParser());
 //Routes  Import
 
 import userRouter from "./routes/user.routes.js";
+import watchListRouter from "./routes/watchlist.routes.js";
 
 //Routes  Use
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/watchList", watchListRouter);
 
 export { app };

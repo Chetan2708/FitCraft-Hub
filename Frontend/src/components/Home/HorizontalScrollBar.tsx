@@ -21,7 +21,6 @@ const HorizontalScrollBar: React.FC<HorizontalScrollBarProps> = ({
 
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
 
-  const exercise = useSelector((state: any) => state.exercise);
  
   return (
     <section ref={targetRef} className="relative h-[250vh] ">
@@ -40,7 +39,7 @@ const Card: React.FC<{ item: string }> = ({ item }) => {
   return (
     <div
       key={item}
-      className="group relative h-[300px] w-[450px] overflow-hidden bg-slate-300 rounded-2xl shadow-lg"
+      className="group relative h-[300px] w-[450px] overflow-hidden  rounded-2xl shadow-lg"
     >
       <BodyPart item={item} />
     </div>
