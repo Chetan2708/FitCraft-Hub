@@ -1,11 +1,7 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux";
+
 import { motion, useTransform, useScroll } from "framer-motion";
 import BodyPart from "./BodyPart";
-import { SignUpType } from "../../definitions";
-import { fetchData } from "../../utils/api";
-import { exerciseApiOptions } from "../../utils/api/options";
-import { useQuery } from "@tanstack/react-query";
 
 interface HorizontalScrollBarProps {
   allBodyParts: string[];

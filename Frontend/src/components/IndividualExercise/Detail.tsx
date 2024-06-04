@@ -34,7 +34,7 @@ const Detail: React.FC<DetailProps> = ({ exerciseData }) => {
     },
   ];
   return (
-    <div className="flex flex-col lg:flex-row p-10 justify-around">
+    <div className="flex flex-col lg:flex-row p-10 justify-around items-center">
       <div>
         <img
           src={exerciseData.gifUrl}
@@ -42,9 +42,9 @@ const Detail: React.FC<DetailProps> = ({ exerciseData }) => {
           className="bg-gradient-primary mix-blend-multiply "
         />
       </div>
-      <div className="flex flex-col gap-6 lg:gap-16">
+      <div className="flex flex-col  gap-6 lg:gap-16">
         <h1 className="text-2xl lg:text-4xl">
-          {exerciseData.name.toUpperCase()}
+          {exerciseData.name?.toUpperCase()}
         </h1>
         <h1 className="text-xl lg:text-2xl">
           Exercises keep you strong.{" "}
@@ -65,7 +65,7 @@ const Detail: React.FC<DetailProps> = ({ exerciseData }) => {
             >
               <img src={item.icon} alt={item.name} className="size-18" />
             </div>
-              <p className="lg:text-3xl text-xl">{item.name.toUpperCase()}</p>
+              <p className="lg:text-3xl text-xl">{item.name?.toUpperCase()}</p>
           </div>
         ))}
       </div>

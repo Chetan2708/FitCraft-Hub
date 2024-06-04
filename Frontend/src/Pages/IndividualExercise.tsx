@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import Detail from "../components/IndividualExercise/Detail";
 import ExerciseVideos from "../components/IndividualExercise/ExerciseVideos";
 import { useQuery } from "@tanstack/react-query";
-import { fetchData } from "../utils/api";
-import { exerciseApiOptions, youtubeOptions } from "../utils/api/options";
-import { exercisedburl, youtubeSearchUrl } from "../utils/constants";
+import { fetchBackendData, fetchData } from "../utils/api";
+import { youtubeOptions } from "../utils/api/options";
+import { baseURL, youtubeSearchUrl } from "../utils/constants";
 import Loader from "../utils/extras/Loader";
 import Swal from "sweetalert2";
 
@@ -19,15 +19,13 @@ const IndividualExercise:React.FC = () => {
   } = useQuery({
     queryKey: ["individualExercise", id],
     queryFn: () =>
-      fetchData(
-        `${exercisedburl}/exercises/exercise/${id}`,
-        exerciseApiOptions
+      fetchBackendData(
+        `${baseURL}/exerciseData/getExercise/${id}`,
       ),
     staleTime: 20000,
     refetchOnWindowFocus: false,
     refetchOnMount: false,
   });
-
   const {
     error: youtubeError,
     isLoading: youtubeLoading,

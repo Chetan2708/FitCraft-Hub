@@ -6,9 +6,10 @@ import { Button } from '../../utils/components/ui/button';
 
 interface LoginProps {
   onLogin: (data: LoginType) => void;
+  changeTab: (data:string) => void;
 }
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
+const Login: React.FC<LoginProps> = ({ onLogin , changeTab  }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginType>();
 
   const loginData = (data: LoginType) => {
@@ -26,7 +27,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             </div>
             <div>
               <label className="text-sm mb-2 block">Email</label>
-              <div className="relative flex items-center">
+              <div className="relative flex flex-col items-center">
                 <Input
                   type="email"
                   placeholder="Enter email"
@@ -38,7 +39,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             </div>
             <div>
               <label className="text-sm mb-2 block">Password</label>
-              <div className="relative flex items-center">
+              <div className="relative flex  flex-col items-center">
                 <Input
                   type="password"
                   placeholder="Enter password"
@@ -49,17 +50,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
               </div>
             </div>
             <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                />
-                <label htmlFor="remember-me" className="ml-3 block text-sm">
-                  Remember me
-                </label>
-              </div>
+              
               <div className="text-sm">
                 <a href="javascript:void(0);" className="text-blue-600 hover:underline">
                   Forgot your password?
@@ -76,7 +67,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             </div>
             <p className="text-sm !mt-10 text-center">
               Don't have an account
-              <a href="javascript:void(0);" className="text-blue-600 hover:underline ml-1 whitespace-nowrap">Register here</a>
+              <a href="javascript:void(0);" className="text-blue-600 hover:underline ml-1 whitespace-nowrap"  onClick={() => changeTab('signup')}>Register here</a>
             </p>
           </form>
         </div>

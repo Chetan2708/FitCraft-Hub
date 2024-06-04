@@ -6,9 +6,10 @@ import { Button } from "../../utils/components/ui/button";
 
 interface SignupProps {
   onSignup: (data: SignUpType) => void;
+  changeTab: (data: string) => void;
 }
 
-const Signup: React.FC<SignupProps> = ({ onSignup }) => {
+const Signup: React.FC<SignupProps> = ({ onSignup, changeTab }) => {
   const {
     register,
     handleSubmit,
@@ -23,45 +24,52 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
     <div className="font-[sans-serif] text-[#333]">
       <div className="min-h-screen flex flex-col items-center justify-center p-6">
         <div className="grid md:grid-cols-2 items-center gap-6 max-w-7xl w-full">
-          <form className="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto md:max-w-md w-full" onSubmit={handleSubmit(RegisterData)}>
+          <form
+            className="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto md:max-w-md w-full"
+            onSubmit={handleSubmit(RegisterData)}
+          >
             <h3 className="text-2xl font-extrabold mb-10">Registration</h3>
             <div className="space-y-6">
               <div>
                 <label className="text-sm mb-2 block">Name</label>
-                <div className="relative flex items-center">
+                <div className="relative flex flex-col items-center">
                   <Input
-               
                     type="text"
                     placeholder="Enter name"
                     {...register("name", { required: true })}
                     className="bg-gray-100 w-full text-sm px-4 py-4 focus:bg-transparent outline-blue-500 transition-all"
                   />
-                  {errors.name && <span className="text-red-500">Name is required</span>}
+                  {errors.name && (
+                    <span className="text-red-500">Name is required</span>
+                  )}
                 </div>
               </div>
               <div>
                 <label className="text-sm mb-2 block">Email</label>
-                <div className="relative flex items-center">
+                <div className="relative flex  flex-col items-center">
                   <Input
-                  
                     type="text"
                     placeholder="Enter email"
-                    {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+                    {...register("email", {
+                      required: true,
+                      pattern: /^\S+@\S+$/i,
+                    })}
                     className="bg-gray-100 w-full text-sm px-4 py-4 focus:bg-transparent outline-blue-500 transition-all"
                   />
                   {errors.email?.type === "required" && (
                     <span className="text-red-500">Email is required</span>
                   )}
                   {errors.email?.type === "pattern" && (
-                    <span className="text-red-500">Invalid email format</span>
+                    <span className="text-red-500">
+                      Invalid email format
+                    </span>
                   )}
                 </div>
               </div>
               <div>
                 <label className="text-sm mb-2 block">Password</label>
-                <div className="relative flex items-center">
+                <div className="relative flex  flex-col items-center">
                   <Input
-                 
                     type="password"
                     placeholder="Enter password"
                     {...register("password", { required: true, minLength: 8 })}
@@ -79,15 +87,25 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
               </div>
               <div className="flex items-center">
                 <input
-                  id="remember-me"
-                  name="remember-me"
+                  id="accept-terms"
+                  name="accept-terms"
                   type="checkbox"
+                  {...register("acceptTerms", { required: true })}
                   className="h-4 w-4 shrink-0 border-gray-300 rounded"
                 />
-                <label htmlFor="remember-me" className="ml-3 block text-sm">
-                  I accept the <a href="javascript:void(0);" className="text-blue-500 font-semibold hover:underline ml-1">Terms and Conditions</a>
+                <label htmlFor="accept-terms" className="ml-3 block text-sm">
+                  I accept the{" "}
+                  <a
+                    href="javascript:void(0);"
+                    className="text-blue-500 font-semibold hover:underline ml-1"
+                  >
+                    Terms and Conditions
+                  </a>
                 </label>
               </div>
+              {errors.acceptTerms && (
+                <span className="text-red-500">Please accept the Terms and Conditions</span>
+              )}
             </div>
             <div className="mt-10">
               <Button
@@ -97,10 +115,23 @@ const Signup: React.FC<SignupProps> = ({ onSignup }) => {
                 Create an account
               </Button>
             </div>
-            <p className="text-sm mt-6">Already have an account? <a href="javascript:void(0);" className="text-blue-500 font-semibold hover:underline ml-1">Login here</a></p>
+            <p className="text-sm mt-6">
+              Already have an account?{" "}
+              <a
+                href="javascript:void(0);"
+                className="text-blue-500 font-semibold hover:underline ml-1"
+                onClick={() => changeTab("login")}
+              >
+                Login here
+              </a>
+            </p>
           </form>
           <div className="h-full max-md:mt-10">
-            <img src="https://readymadeui.com/login-image.webp" className="w-full h-full object-cover" alt="Dining Experience" />
+            <img
+              src="https://readymadeui.com/login-image.webp"
+              className="w-full h-full object-cover"
+              alt="Dining Experience"
+            />
           </div>
         </div>
       </div>

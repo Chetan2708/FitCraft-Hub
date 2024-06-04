@@ -26,7 +26,7 @@ const ExerciseVideos = ({videos , name}) => {
 
 const VideoCard = ({ video }) => {
   return (
-    <div className="video-card relative w-[387px] h-[381px] rounded-lg overflow-hidden shadow-lg m-2 transform hover:scale-105 transition-transform duration-300 ease-in-out">
+    <div className="  rounded-2xl shadow-lg max-w-96  m-2 transform hover:scale-105 transition-transform duration-300 ease-in-out">
       <a
         href={`https://www.youtube.com/watch?v=${video.videoId}`}
         target="_blank"

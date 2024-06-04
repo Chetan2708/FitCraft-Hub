@@ -53,7 +53,7 @@ const SimilarCarousel: React.FC<SwiperCarouselProps> = ({ data }) => {
         
       {exerciseData?.map((exercise) => (
         <SwiperSlide key={exercise.id}>
-          <ExerciseCard exercise={exercise} /> {/* Render ExerciseCard component */}
+          <ExerciseCard exercise={exercise} /> 
         </SwiperSlide>
       ))}
       

@@ -89,7 +89,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
 
   return (
     <TiltCard>
-      <div className="relative rounded-2xl shadow-lg bg-white m-4 overflow-hidden transform transition duration-300">
+      <div className="relative rounded-2xl shadow-lg bg-white m-4 overflow-hidden transform transition duration-300 min-w-[280px]">
         <div className="relative">
           <img
             src={exercise.gifUrl}
@@ -98,14 +98,13 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
             className="w-full h-72 object-contain"
           />
         </div>
-        <div className="flex justify-between items-center p-8">
+        <div className="flex justify-between p-8 flex-wrap">
           <div className="flex gap-4 items-center">
             <Button className="bg-[#FCC757]">{exercise.target.toUpperCase()}</Button>
             <Button className="bg-[#ee9eab]">{exercise.bodyPart.toUpperCase()}</Button>
           </div>
-          <div >
+          <div className="mt-4 sm:mt-0">
             <Button onClick={handleExercise}>View Exercise</Button>
-           
           </div>
           <div className="absolute top-0 right-0 p-4  mr-2 mt-2">
           <label className="like-container ">

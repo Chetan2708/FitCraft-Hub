@@ -44,7 +44,7 @@ const register = asyncHandler(async (req, res, next) => {
     name,
     email,
     password,
-    pic, // Todo:Multer to upload image on cloudinary
+    pic,
   });
   // Return user
   const createdUser = await User.findById(user._id).select(
@@ -89,7 +89,7 @@ const login = asyncHandler(async (req, res, next) => {
   };
 
   return res
-    .status(200) 
+    .status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
     .json(
@@ -205,9 +205,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         email,
       },
     },
-    {
-      new: true,
-    }
+    { new: true }
   ).select("-password");
 
   return res
@@ -223,6 +221,44 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, { user: req.user }, "User found successfully"));
 });
 
+const saveBmi = asyncHandler(async (req, res) => {
+  
+  const { bmi, height, weight } = req.body;
+
+  if (!bmi || !height || !weight) {
+    throw new ApiError(400, "All fields are required");
+  }
+
+  if (bmi < 0 || height < 0 || weight < 0) {
+    throw new ApiError(400, "All fields must be greater than 0");
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $set: {
+        bmi,
+        height,
+        weight,
+      },
+    },
+    { new: true }
+  ).select("-password -refreshToken");
+
+  if (!updatedUser) {
+    throw new ApiError(404, "User not found");
+  }
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, { user: updatedUser }, "BMI saved successfully")
+    );
+});
+
+
+
+
 export {
   register,
   login,
@@ -230,5 +266,6 @@ export {
   refreshAccess,
   changeCurrentPassword,
   updateAccountDetails,
-  getCurrentUser
+  getCurrentUser,
+  saveBmi,
 };

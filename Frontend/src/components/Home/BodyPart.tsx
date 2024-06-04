@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import gym from "../../assets/icons/gym.png";
 import { setBodyPart, setExercises } from "../../features/exercises/exerciseSlice";
 import { useQuery } from "@tanstack/react-query";
-import { fetchData } from "../../utils/api";
-import { exerciseApiOptions } from "../../utils/api/options";
+import { fetchBackendData } from "../../utils/api";
+
 import { Link as ScrollLink } from "react-scroll";
+import { baseURL } from "../../utils/constants";
 
 interface BodyPartProps {
   item: string;
@@ -19,9 +20,9 @@ const BodyPart: React.FC<BodyPartProps> = ({ item }) => {
     
     const url =
       bodyPart === "all"
-        ? "https://exercisedb.p.rapidapi.com/exercises?offset=0&limit=1300"
-        : `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}?offset=0&limit=1300`;
-    return fetchData(url, exerciseApiOptions);
+        ? `${baseURL}/exerciseData/getAllExercises`
+        : `${baseURL}/exerciseData/getExerciseByBodyPart/${bodyPart}`;
+    return fetchBackendData(url);
   };
 
   const { error, isLoading, data } = useQuery({

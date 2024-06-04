@@ -12,9 +12,12 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { setLogin } from "../features/user/authenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Auth = () => {
+  // State to manage active tab
+  const [activeTab, setActiveTab] = useState("login");
+
   //Mutations
   const loginMutation = useMutation({ mutationFn: signIn });
   const signupMutation = useMutation({ mutationFn: signUp });
@@ -23,12 +26,10 @@ const Auth = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(user){
-      navigate("/")
+    if (user) {
+      navigate("/");
     }
-
-  }, [navigate ,user])
-  
+  }, [navigate, user]);
 
   const onSignup = async (data) => {
     try {
@@ -49,6 +50,7 @@ const Auth = () => {
       });
     }
   };
+
   const onLogin = async (data) => {
     try {
       const response = await loginMutation.mutateAsync(data);
@@ -59,13 +61,10 @@ const Auth = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      navigate("/") ;
+      navigate("/");
 
-      localStorage.setItem( 
-        "accessToken",
-        response.data.data.accessToken
-      )
-      dispatch(setLogin(response.data.data.user))
+      localStorage.setItem("accessToken", response.data.data.accessToken);
+      dispatch(setLogin(response.data.data.user));
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -78,7 +77,8 @@ const Auth = () => {
   return (
     <div className="min-h-screen ">
       <Tabs
-        defaultValue="login"
+        value={activeTab}
+        onValueChange={setActiveTab}
         className="flex justify-center items-center flex-col "
       >
         <TabsList className="p-8 w-full h-52 mt-10 ">
@@ -86,15 +86,14 @@ const Auth = () => {
             Login
           </TabsTrigger>
           <TabsTrigger value="signup" className="text-xl lg:text-3xl">
-            {" "}
             Signup
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="login" >
-          <Login onLogin={onLogin} />
+        <TabsContent value="login">
+          <Login onLogin={onLogin} changeTab={setActiveTab} />
         </TabsContent>
-        <TabsContent value="signup" >
-          <Signup onSignup={onSignup} />
+        <TabsContent value="signup">
+          <Signup onSignup={onSignup} changeTab={setActiveTab} />
         </TabsContent>
       </Tabs>
     </div>

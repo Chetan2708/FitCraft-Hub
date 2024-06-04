@@ -1,24 +1,25 @@
   import { useEffect, useState } from "react";
   import { Button } from "../../utils/components/ui/button";
   import { Input } from "../../utils/components/ui/input";
-  import { fetchData } from "../../utils/api";
-  import { exerciseApiOptions } from "../../utils/api/options";
+  import { fetchBackendData } from "../../utils/api";
+
   import { useQuery } from "@tanstack/react-query";
   import HorizontalScrollBar from "./HorizontalScrollBar";
   import { useDispatch } from "react-redux";
   import { setExercises } from "../../features/exercises/exerciseSlice";
   import { Link as ScrollLink } from "react-scroll";
+import { baseURL } from "../../utils/constants";
   const SearchExercises:React.FC = () => {
     const dipatch = useDispatch()
 
     
     const [search, setSearch] = useState<string>("");
     const [allBodyParts , setAllBodyParts] = useState<string[]>([]);
-    console.log(exerciseApiOptions)
+
     const {error, isLoading, data } = useQuery({
 
       queryKey: ["bodyParts"],
-      queryFn: ()=>fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseApiOptions),
+      queryFn: ()=>fetchBackendData(`${baseURL}/exerciseData/getDistinctBodyParts`),
       staleTime: Infinity, 
       refetchOnMount:false,
     });
@@ -33,10 +34,7 @@
 
 
     const handleSearch = async () => {
-        const exercisesData = await fetchData(
-          "https://exercisedb.p.rapidapi.com/exercises?offset=0&limit=1300",
-          exerciseApiOptions
-        );
+        const exercisesData = await fetchBackendData(`${baseURL}/exerciseData/getAllExercises`)
         const trimmedSearch = search.trim().toLowerCase();
         const filteredExercises = exercisesData?.filter((exercise) =>
           exercise.bodyPart.toLowerCase().includes(trimmedSearch) 

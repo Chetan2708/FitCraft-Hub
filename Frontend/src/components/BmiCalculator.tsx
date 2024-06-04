@@ -3,6 +3,9 @@ import { Input } from "../utils/components/ui/input";
 import { Button } from "../utils/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Swal from "sweetalert2";
+import { fetchPostData } from "../utils/api";
+import { baseURL } from "../utils/constants";
+import { useSelector } from "react-redux";
 
 const BmiCalculator: React.FC = () => {
   const [height, setHeight] = useState<string>("");
@@ -10,8 +13,9 @@ const BmiCalculator: React.FC = () => {
   const [bmi, setBmi] = useState<number | null>(null);
   const [fitnessType, setFitnessType] = useState<string | null>(null);
   const [progress, setProgress] = useState<number>(0);
+  const user = useSelector((state) => state.auth?.userData);
 
-  const calculateBMI = (event) => {
+  const calculateBMI = async (event) => {
     event.preventDefault();
     const heightValue = parseFloat(height);
     const weightValue = parseFloat(weight);
@@ -29,7 +33,15 @@ const BmiCalculator: React.FC = () => {
     const heightMeters = heightValue / 100;
 
     // Calculate BMI
-    const bmiValue = (weightValue / (heightMeters * heightMeters));
+    const bmiValue = weightValue / (heightMeters * heightMeters);
+
+    // Post to API
+    const data = {
+      height: heightValue,
+      weight: weightValue,
+      bmi: bmiValue
+    };
+    await fetchPostData(`${baseURL}/user/saveBmi`, data);
 
     // Update BMI state
     setBmi(bmiValue);
@@ -58,6 +70,15 @@ const BmiCalculator: React.FC = () => {
   return (
     <div className="flex flex-col justify-center items-center gap-8 mt-10">
       <h1 className="text-3xl sm:text-5xl font-semibold text-red-800">BMI Calculator</h1>
+      {user?.bmi ? (
+        <h2 className="text-xl sm:text-2xl font-medium text-gray-700">
+          Your previous BMI was: <span className="font-bold">{user.bmi.toFixed(2)}</span>
+        </h2>
+      ) : (
+        <h2 className="text-xl sm:text-2xl font-medium text-gray-700">
+          You have no previous BMI recorded.
+        </h2>
+      )}
       <form className="flex flex-col gap-6" onSubmit={calculateBMI}>
         <label className="text-2xl font-medium mb-4">
           Height (cm):
@@ -122,16 +143,15 @@ const BmiCalculator: React.FC = () => {
                   <stop offset="100%" style={{ stopColor: "red", stopOpacity: 1 }} />
                 </linearGradient>
               </defs>
-      
             </motion.svg>
             <motion.div
-              className="text-3xl font-medium mt-4"
+              className=" font-medium mt-4 text-xl sm:text-3xl"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
             >
               <p>Your BMI is: {bmi.toFixed(2)}</p>
-              <p className="text-3xl">Fitness type: {fitnessType}</p>
+              <p>Fitness type: {fitnessType}</p>
             </motion.div>
           </motion.div>
         )}

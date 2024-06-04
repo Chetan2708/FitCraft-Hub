@@ -31,11 +31,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         default:"https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
+
     refreshToken: {
         type: String
+    },
+    weight: {
+        type: Number,
+        min: 0
+    },
+    height: {
+        type: Number,
+        min: 0
+    },
+    bmi: {
+        type: Number,
+        min: 0
     }
-
-
 },
     {
         timestamps: true

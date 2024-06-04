@@ -30,3 +30,9 @@ export const fetchPostData = async (url:string, data:object ) => {
 };
 
 
+
+export const fetchBackendData = async (url:string) => {
+  const response = await axios.get(url, getAuthHeaders());
+  return response.data.data;
+};
+

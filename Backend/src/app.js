@@ -18,9 +18,11 @@ app.use(cookieParser());
 
 import userRouter from "./routes/user.routes.js";
 import watchListRouter from "./routes/watchlist.routes.js";
+import exerciseRouter from "./routes/exercise.routes.js";
 
 //Routes  Use
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/watchList", watchListRouter);
+app.use("/api/v1/exerciseData", exerciseRouter)
 
 export { app };

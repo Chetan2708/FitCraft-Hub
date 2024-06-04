@@ -5,7 +5,6 @@ import { FiArrowRight } from "react-icons/fi";
 
 import like from "../assets/images/Like.jpg";
 import BMI from "../assets/images/BMI.jpg";
-import Scheduler from "../assets/images/Scheduler.jpg";
 import Pt from "../assets/images/Pt.jpg";
 
 const Dashboard :React.FC = () => {
@@ -24,15 +23,10 @@ const Dashboard :React.FC = () => {
           imgSrc={BMI}
           to="bmi-calculator"
         />
-        <Link
-          heading="Custom Scheduler"
-          subheading="Organize and plan your schedule"
-          imgSrc={Scheduler}
-          to="custom-scheduler"
-        />
+      
         <Link
           heading="Personal Trainer"
-          subheading="Organize and plan your schedule"
+          subheading="Chat with your personal trainer"
           imgSrc={Pt}
           to="personal-trainer"
         />
