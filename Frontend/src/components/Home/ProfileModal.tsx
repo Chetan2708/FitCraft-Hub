@@ -19,9 +19,10 @@ import { setLogout } from "../../features/user/authenticationSlice";
 
 import { useNavigate } from "react-router-dom";
 import { resetLikedExercises } from "../../features/exercises/exerciseSlice";
+import { UserRootState } from "../../types/reduxTypes";
 
 const ProfileModal :React.FC = () => {
-  const user = useSelector((state) => state.auth?.userData);
+  const user = useSelector((state:UserRootState) => state.auth?.userData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {

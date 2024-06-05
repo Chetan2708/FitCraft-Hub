@@ -13,6 +13,8 @@ import Swal from "sweetalert2";
 import { setLogin } from "../features/user/authenticationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { UserRootState } from "../types/reduxTypes";
+import { LoginType, SignUpType } from "../definitions";
 
 const Auth = () => {
   // State to manage active tab
@@ -21,7 +23,7 @@ const Auth = () => {
   //Mutations
   const loginMutation = useMutation({ mutationFn: signIn });
   const signupMutation = useMutation({ mutationFn: signUp });
-  const user = useSelector((state) => state.auth.userData);
+  const user = useSelector((state:UserRootState) => state.auth.userData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,7 +33,7 @@ const Auth = () => {
     }
   }, [navigate, user]);
 
-  const onSignup = async (data) => {
+  const onSignup = async (data:SignUpType) => {
     try {
       const response = await signupMutation.mutateAsync(data);
       Swal.fire({
@@ -42,7 +44,7 @@ const Auth = () => {
         timer: 1500,
       });
       console.log(response);
-    } catch (error) {
+    } catch (error:any) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -51,7 +53,7 @@ const Auth = () => {
     }
   };
 
-  const onLogin = async (data) => {
+  const onLogin = async (data:LoginType) => {
     try {
       const response = await loginMutation.mutateAsync(data);
       Swal.fire({
@@ -65,7 +67,7 @@ const Auth = () => {
 
       localStorage.setItem("accessToken", response.data.data.accessToken);
       dispatch(setLogin(response.data.data.user));
-    } catch (error) {
+    } catch (error : any) {
       Swal.fire({
         icon: "error",
         title: "Oops...",

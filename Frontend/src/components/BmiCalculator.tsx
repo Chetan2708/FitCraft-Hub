@@ -6,16 +6,24 @@ import Swal from "sweetalert2";
 import { fetchPostData } from "../utils/api";
 import { baseURL } from "../utils/constants";
 import { useSelector } from "react-redux";
+import { UserRootState } from "../types/reduxTypes";
+
+
+
 
 const BmiCalculator: React.FC = () => {
+
+
+
+
   const [height, setHeight] = useState<string>("");
   const [weight, setWeight] = useState<string>("");
   const [bmi, setBmi] = useState<number | null>(null);
   const [fitnessType, setFitnessType] = useState<string | null>(null);
   const [progress, setProgress] = useState<number>(0);
-  const user = useSelector((state) => state.auth?.userData);
+  const user = useSelector((state:UserRootState) => state.auth?.userData);
 
-  const calculateBMI = async (event) => {
+  const calculateBMI = async (event:any) => {
     event.preventDefault();
     const heightValue = parseFloat(height);
     const weightValue = parseFloat(weight);

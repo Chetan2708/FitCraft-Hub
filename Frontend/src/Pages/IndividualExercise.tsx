@@ -66,7 +66,7 @@ const IndividualExercise:React.FC = () => {
     });
     return null;
   }
-
+  console.log(youtubeData)
   return (
     <div >
       {exerciseData && <Detail exerciseData={exerciseData} />}
@@ -76,7 +76,7 @@ const IndividualExercise:React.FC = () => {
           name={exerciseData?.name}
         />
       )}
-      {/* <SimilarExercise exerciseData={exerciseData} /> */}
+   
     </div>
   );
 };

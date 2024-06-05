@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index",
-    "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
+    "start": "node index",
+    "dev": "nodemon -r dotenv/config --experimental-json-modules index.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,3 +24,4 @@
     "openai": "^4.48.1"
   }
 }
+ 

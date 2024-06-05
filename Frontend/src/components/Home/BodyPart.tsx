@@ -8,13 +8,14 @@ import { fetchBackendData } from "../../utils/api";
 import { Link as ScrollLink } from "react-scroll";
 import { baseURL } from "../../utils/constants";
 import Loader from "../../utils/extras/Loader";
+import { ExerciseRootState } from "../../types/reduxTypes";
 
 interface BodyPartProps {
   item: string;
 }
 
 const BodyPart: React.FC<BodyPartProps> = ({ item }) => {
-  const bodyPart = useSelector((state)=>state.exercise.bodypart)
+  const bodyPart = useSelector((state:ExerciseRootState)=>state.exercise.bodypart)
   const dispatch = useDispatch();
 
   const fetchExercises = async (bodyPart: string) => {

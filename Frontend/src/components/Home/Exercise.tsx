@@ -4,10 +4,11 @@ import ExerciseCard from "./ExerciseCard";
 
 import { motion } from "framer-motion";
 import Pagination from "../../components/Pagination"; // Import the Pagination component
+import { ExerciseRootState } from "../../types/reduxTypes";
 
 const Exercise: React.FC = () => {
-  const exercises = useSelector((state) => state.exercise.exercises);
-  const bodyPart = useSelector((state) => state.exercise.bodypart);
+  const exercises = useSelector((state:ExerciseRootState) => state.exercise.exercises);
+  const bodyPart = useSelector((state:ExerciseRootState) => state.exercise.bodypart);
 
   const [currentPage, setCurrentPage] = useState<number>(1);
   const exercisesPerPage: number = 9;

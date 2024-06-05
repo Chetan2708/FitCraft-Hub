@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   Dialog,
@@ -7,29 +7,48 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
   DialogClose,
 } from '../utils/components/ui/dialog';
 import { Button } from '../utils/components/ui/button';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
+import { Calendar, momentLocalizer, SlotInfo } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Swal from 'sweetalert2';
 
 const localizer = momentLocalizer(moment);
 
-const EventModal = ({ events, setEvents, selectedSlot, setSelectedSlot }) => {
-  const { register, handleSubmit, reset, setValue } = useForm();
+interface Event {
+  title: string;
+  description?: string;
+  start: Date;
+  end: Date;
+}
 
-  // Pre-fill the form fields with selected slot data
-  React.useEffect(() => {
+interface EventModalProps {
+  events: Event[];
+  setEvents: React.Dispatch<React.SetStateAction<Event[]>>;
+  selectedSlot: SlotInfo | null;
+  setSelectedSlot: React.Dispatch<React.SetStateAction<SlotInfo | null>>;
+}
+
+interface FormData {
+  title: string;
+  description?: string;
+  start: string;
+  end: string;
+}
+
+const EventModal: React.FC<EventModalProps> = ({ events, setEvents, selectedSlot, setSelectedSlot }) => {
+  const { register, handleSubmit, reset, setValue } = useForm<FormData>();
+
+  useEffect(() => {
     if (selectedSlot) {
       setValue('start', moment(selectedSlot.start).format('YYYY-MM-DDTHH:mm'));
       setValue('end', moment(selectedSlot.end).format('YYYY-MM-DDTHH:mm'));
     }
   }, [selectedSlot, setValue]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: FormData) => {
     const { title, description, start, end } = data;
     if (title && start && end) {
       setEvents([...events, { title, description, start: new Date(start), end: new Date(end) }]);
@@ -106,19 +125,19 @@ const EventModal = ({ events, setEvents, selectedSlot, setSelectedSlot }) => {
   );
 };
 
-const CustomScheduler = () => {
-  const [events, setEvents] = useState([]);
-  const [selectedSlot, setSelectedSlot] = useState(null);
+const CustomScheduler: React.FC = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [selectedSlot, setSelectedSlot] = useState<SlotInfo | null>(null);
 
-  const handleSelectSlot = ({ start, end }) => {
-    setSelectedSlot({ start, end });
+  const handleSelectSlot = ({ start, end }: SlotInfo) => {
+    setSelectedSlot({ start, end, slots: [], action: 'select' });
   };
 
-  const handleDeleteEvent = (event) => {
+  const handleDeleteEvent = (event: Event) => {
     setEvents(events.filter(e => e !== event));
   };
 
-  const EventComponent = ({ event }) => (
+  const EventComponent: React.FC<{ event: Event }> = ({ event }) => (
     <div>
       <span>{event.title}</span>
       <button

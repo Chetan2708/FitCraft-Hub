@@ -19,7 +19,6 @@ import { store } from './app/store.ts';
 import { persistStore } from 'redux-persist';
 import BmiCalculator from './components/BmiCalculator.tsx';
 import CustomSceduler from './components/CustomSceduler.tsx';
-import PersonalTrainer from './components/PersonalTrainer.tsx';
 import ComingSoon from './Pages/ComingSoon.tsx';
 import ErrorPage from './Pages/ErrorPage.tsx';
 const router = createBrowserRouter([ 
@@ -80,6 +79,8 @@ const router = createBrowserRouter([
 
 const persistor = persistStore(store)
 const queryClient = new QueryClient();
+
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

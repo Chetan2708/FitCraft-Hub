@@ -21,3 +21,15 @@ export interface LoginType {
   
 
 
+  export interface ExerciseType {
+    id: string;
+    _id: string;
+    bodyPart: string;
+    equipment: string;
+    gifUrl: string;
+    name: string;
+    instructions: string[];
+    secondaryMuscles: string[];
+    target: string;
+    __v: number; 
+  }

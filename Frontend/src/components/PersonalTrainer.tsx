@@ -32,7 +32,8 @@ const PersonalTrainer: React.FC = () => {
   const getOpenAIResponse = async (message: string): Promise<string> => {
     // Here you would send the message to your server which interacts with OpenAI API
     // For now, we will simulate an OpenAI response with a static message
-    // Replace the following line with your API call logic
+    // Replace the following line with your API call logic\
+    console.log(message)
     return new Promise((resolve) =>
       setTimeout(() => resolve("This is a reply from OpenAI"), 1000)
     );

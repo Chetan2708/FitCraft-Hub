@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import ExerciseCard from '../components/Home/ExerciseCard';
 import Loader from '../utils/extras/Loader';
+import { ExerciseRootState } from '../types/reduxTypes';
 
 const LikedExercises:React.FC =  () => {
   const {
@@ -16,9 +17,8 @@ const LikedExercises:React.FC =  () => {
     queryKey: ["watchList"],
     queryFn: () => fetchData(`${baseURL}/watchList/getWatchlist`, getAuthHeaders()),
   });
-  const likedExercisesIds = data?.data?.exercises?.map((exercise) => exercise.exerciseID);
-  console.log(likedExercisesIds)  
-  const exercises = useSelector((state) => state.exercise.exercises);
+  const likedExercisesIds = data?.data?.exercises?.map((exercise:any) => exercise.exerciseID);
+  const exercises = useSelector((state:ExerciseRootState) => state.exercise.exercises);
   const likedExercises = exercises.filter(exercise => likedExercisesIds?.includes(exercise.id));
  
   if (isLoading) {

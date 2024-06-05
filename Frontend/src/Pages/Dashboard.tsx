@@ -1,5 +1,5 @@
 import { useMotionValue, motion, useSpring, useTransform } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useRef, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 
@@ -7,7 +7,14 @@ import like from "../assets/images/Like.jpg";
 import BMI from "../assets/images/BMI.jpg";
 import Pt from "../assets/images/Pt.jpg";
 
-const Dashboard :React.FC = () => {
+interface LinkProps {
+  heading: string;
+  subheading: string;
+  imgSrc: string;
+  to: string;
+}
+
+const Dashboard: React.FC = () => {
   return (
     <section className="bg-neutral-950 p-4 md:p-8 min-h-screen">
       <div className="mx-auto max-w-5xl">
@@ -23,21 +30,19 @@ const Dashboard :React.FC = () => {
           imgSrc={BMI}
           to="bmi-calculator"
         />
-      
         <Link
           heading="Personal Trainer"
           subheading="Chat with your personal trainer"
           imgSrc={Pt}
           to="coming-soon"
-          
         />
       </div>
     </section>
   );
 };
 
-const Link = ({ heading, imgSrc, subheading, to }) => {
-  const ref = useRef(null);
+const Link: React.FC<LinkProps> = ({ heading, imgSrc, subheading, to }) => {
+  const ref = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
 
   const x = useMotionValue(0);
@@ -49,8 +54,10 @@ const Link = ({ heading, imgSrc, subheading, to }) => {
   const top = useTransform(mouseYSpring, [0.5, -0.5], ["40%", "60%"]);
   const left = useTransform(mouseXSpring, [0.5, -0.5], ["60%", "70%"]);
 
-  const handleMouseMove = (e) => {
-    const rect = ref.current.getBoundingClientRect();
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    const rect = ref.current?.getBoundingClientRect();
+
+    if (!rect) return;
 
     const width = rect.width;
     const height = rect.height;
@@ -89,7 +96,7 @@ const Link = ({ heading, imgSrc, subheading, to }) => {
             staggerChildren: 0.075,
             delayChildren: 0.25,
           }}
-          className="relative  block text-4xl font-bold text-neutral-500 transition-colors duration-500 group-hover:text-neutral-50 md:text-6xl"
+          className="relative block text-4xl font-bold text-neutral-500 transition-colors duration-500 group-hover:text-neutral-50 md:text-6xl"
         >
           {heading.split("").map((l, i) => (
             <motion.span
@@ -123,7 +130,7 @@ const Link = ({ heading, imgSrc, subheading, to }) => {
         }}
         transition={{ type: "spring" }}
         src={imgSrc}
-        className="absolute  h-24 w-32 rounded-lg object-cover md:h-48 md:w-64"
+        className="absolute h-24 w-32 rounded-lg object-cover md:h-48 md:w-64"
         alt={`Image representing a link for ${heading}`}
       />
 

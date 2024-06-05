@@ -85,27 +85,7 @@ const Signup: React.FC<SignupProps> = ({ onSignup, changeTab }) => {
                   )}
                 </div>
               </div>
-              <div className="flex items-center">
-                <input
-                  id="accept-terms"
-                  name="accept-terms"
-                  type="checkbox"
-                  {...register("acceptTerms", { required: true })}
-                  className="h-4 w-4 shrink-0 border-gray-300 rounded"
-                />
-                <label htmlFor="accept-terms" className="ml-3 block text-sm">
-                  I accept the{" "}
-                  <a
-                    href="javascript:void(0);"
-                    className="text-blue-500 font-semibold hover:underline ml-1"
-                  >
-                    Terms and Conditions
-                  </a>
-                </label>
-              </div>
-              {errors.acceptTerms && (
-                <span className="text-red-500">Please accept the Terms and Conditions</span>
-              )}
+           
             </div>
             <div className="mt-10">
               <Button

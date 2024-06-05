@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 const SIDEBAR_VARIANTS = {
@@ -37,7 +37,7 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, children }) => {
-    return (
+  return (
     <motion.div
       initial={false}
       animate={isOpen ? "open" : "closed"}

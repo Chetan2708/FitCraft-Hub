@@ -9,6 +9,7 @@
   import { setExercises } from "../../features/exercises/exerciseSlice";
   import { Link as ScrollLink } from "react-scroll";
 import { baseURL } from "../../utils/constants";
+import { ExerciseType } from "../../definitions";
   const SearchExercises:React.FC = () => {
     const dipatch = useDispatch()
 
@@ -16,7 +17,7 @@ import { baseURL } from "../../utils/constants";
     const [search, setSearch] = useState<string>("");
     const [allBodyParts , setAllBodyParts] = useState<string[]>([]);
 
-    const {error, isLoading, data } = useQuery({
+    const { data } = useQuery({
 
       queryKey: ["bodyParts"],
       queryFn: ()=>fetchBackendData(`${baseURL}/exerciseData/getDistinctBodyParts`),
@@ -38,7 +39,7 @@ import { baseURL } from "../../utils/constants";
     const handleSearch = async () => {
         const exercisesData = await fetchBackendData(`${baseURL}/exerciseData/getAllExercises`)
         const trimmedSearch = search.trim().toLowerCase();
-        const filteredExercises = exercisesData?.filter((exercise) =>
+        const filteredExercises = exercisesData?.filter((exercise:ExerciseType) =>
           exercise.bodyPart.toLowerCase().includes(trimmedSearch) 
           || exercise.equipment.toLowerCase().includes(trimmedSearch)
           || exercise.target.toLowerCase().includes(trimmedSearch)

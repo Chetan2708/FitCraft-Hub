@@ -1,6 +1,5 @@
-import React from 'react';
 
-const ComingSoon = () => {
+const ComingSoon :React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-900 flex flex-col items-center justify-center relative px-4">
       <div

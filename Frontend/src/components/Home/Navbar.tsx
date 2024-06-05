@@ -6,10 +6,11 @@ import ProfileModal from "./ProfileModal";
 import { Link as ScrollLink } from "react-scroll";
 import NavbarButton from "../../utils/extras/NavbarButton";
 import Sidebar from "./Sidebar"; // Make sure to adjust the import path accordingly
+import { UserRootState } from "../../types/reduxTypes";
 
 const Navbar :React.FC =  () => {
   const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.userData);
+  const user = useSelector((state:UserRootState) => state.auth.userData);
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [active, setActive] = useState(false);
   const toggleSidebar = () => {

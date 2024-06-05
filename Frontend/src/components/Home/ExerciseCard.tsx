@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLikedExercises } from "../../features/exercises/exerciseSlice";
 import { getAuthHeaders } from "../../utils/api/options";
 import { useQuery } from "@tanstack/react-query";
+import { LikedExerciseRootState, UserRootState } from "../../types/reduxTypes";
 
 interface Exercise {
   id: string;
@@ -27,7 +28,7 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
   const navigate = useNavigate();
   const [liked, setLiked] = useState(false);
   const dispatch = useDispatch();
-  const { error, isLoading, data, refetch } = useQuery({
+  const {  data, refetch } = useQuery({
     queryKey: ["watchList"],
     queryFn: () =>
       fetchData(`${baseURL}/watchList/getWatchlist`, getAuthHeaders()),
@@ -39,8 +40,8 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
     }
   }, [data, dispatch]);
 
-  const likedExercises = useSelector((state) => state.exercise.likedExercises);
-  const user = useSelector((state) => state.auth.userData);
+  const likedExercises = useSelector((state:LikedExerciseRootState) => state.exercise.likedExercises);
+  const user = useSelector((state:UserRootState) => state.auth.userData);
   const likedExercisesIds = likedExercises?.map(
     (exercise) => exercise.exerciseID
   );
