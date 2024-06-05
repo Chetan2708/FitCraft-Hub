@@ -29,23 +29,23 @@ app.use("/api/v1/exerciseData", exerciseRouter);
 app.use("/api/v1/chat", chatRouter);
 
 // --------------------Deployment
-const __filename = fileURLToPath(import.meta.url);
-const __dirname1 = path.dirname(__filename);
-const __dirname = path.resolve(__dirname1, '..'); 
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname1 = path.dirname(__filename);
+// const __dirname = path.resolve(__dirname1, '..'); 
 
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, "/Frontend/dist")));
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, "/Frontend/dist")));
 
-  app.get('*', (req, res) => {
-    console.log(__dirname);
-    res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"));
-  });
-} else {
-  app.get("/", async function (req, res) {
-    res.send("Seriously");
-  });
-}
+//   app.get('*', (req, res) => {
+//     console.log(__dirname);
+//     res.sendFile(path.resolve(__dirname, "Frontend", "dist", "index.html"));
+//   });
+// } else {
+//   app.get("/", async function (req, res) {
+//     res.send("Seriously");
+//   });
+// }
 // --------------------Deployment
 
 export { app };
