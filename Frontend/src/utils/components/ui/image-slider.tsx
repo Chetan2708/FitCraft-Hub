@@ -1,6 +1,7 @@
-import React, { useState, useEffect, ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+"use client";
 import { cn } from "../../lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect, useState, ReactNode } from "react";
 
 interface ImagesSliderProps {
   images: string[];
@@ -22,7 +23,7 @@ export const ImagesSlider: React.FC<ImagesSliderProps> = ({
   direction = "up",
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true); // Change loading state to true initially
+  const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
   const handleNext = () => {
@@ -42,7 +43,7 @@ export const ImagesSlider: React.FC<ImagesSliderProps> = ({
   }, []);
 
   const loadImages = () => {
-    setLoading(true); // Set loading state to true when loading images
+    setLoading(true);
     const loadPromises = images.map((image) => {
       return new Promise<string>((resolve, reject) => {
         const img = new Image();
@@ -55,12 +56,9 @@ export const ImagesSlider: React.FC<ImagesSliderProps> = ({
     Promise.all(loadPromises)
       .then((loadedImages) => {
         setLoadedImages(loadedImages);
-        setLoading(false); // Set loading state to false when images are loaded
+        setLoading(false);
       })
-      .catch((error) => {
-        console.error("Failed to load images", error);
-        setLoading(false); // Ensure loading state is set to false on error
-      });
+      .catch((error) => console.error("Failed to load images", error));
   };
 
   useEffect(() => {
@@ -130,13 +128,11 @@ export const ImagesSlider: React.FC<ImagesSliderProps> = ({
         perspective: "1000px",
       }}
     >
-      {/* Display loading indicator while images are being loaded */}
       {loading && (
-        <div className="absolute inset-0 flex items-center justify-center text-white font-semibold bg-black bg-opacity-75">
-          Loading...
-        </div>
-      )}
-
+      <div className="absolute inset-0 flex items-center justify-center text-white font-semibold bg-black bg-opacity-75">
+        Loading...
+      </div>
+    )}
       {areImagesLoaded && children}
       {areImagesLoaded && overlay && (
         <div
