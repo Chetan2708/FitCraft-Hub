@@ -31,8 +31,13 @@ const itemVariants = {
   },
 };
 
-const Sidebar = ({ isOpen, children }) => {
-  return (
+interface SidebarProps {
+  isOpen: boolean;
+  children: ReactNode;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, children }) => {
+    return (
     <motion.div
       initial={false}
       animate={isOpen ? "open" : "closed"}

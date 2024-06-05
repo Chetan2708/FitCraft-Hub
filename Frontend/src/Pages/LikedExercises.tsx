@@ -5,6 +5,7 @@ import { getAuthHeaders } from '../utils/api/options';
 import { useQuery } from '@tanstack/react-query';
 import { useSelector } from 'react-redux';
 import ExerciseCard from '../components/Home/ExerciseCard';
+import Loader from '../utils/extras/Loader';
 
 const LikedExercises:React.FC =  () => {
   const {
@@ -19,7 +20,14 @@ const LikedExercises:React.FC =  () => {
   console.log(likedExercisesIds)  
   const exercises = useSelector((state) => state.exercise.exercises);
   const likedExercises = exercises.filter(exercise => likedExercisesIds?.includes(exercise.id));
-  console.log(likedExercises);
+ 
+  if (isLoading) {
+ return   <Loader/>
+  }
+
+  if (error) {
+    return <div className="text-red-500 text-center">Error loading data</div>;
+  }
 
 
   return (

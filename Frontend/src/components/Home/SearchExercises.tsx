@@ -24,6 +24,8 @@ import { baseURL } from "../../utils/constants";
       refetchOnMount:false,
     });
 
+
+    
     useEffect(() => {
       if (data) {
         setAllBodyParts(["all", ...data]);

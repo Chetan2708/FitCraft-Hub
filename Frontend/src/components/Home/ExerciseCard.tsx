@@ -27,28 +27,25 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
   const navigate = useNavigate();
   const [liked, setLiked] = useState(false);
   const dispatch = useDispatch();
-  const {
-    error,
-    isLoading,
-    data,
-    refetch, 
-  } = useQuery({
+  const { error, isLoading, data, refetch } = useQuery({
     queryKey: ["watchList"],
-    queryFn: () => fetchData(`${baseURL}/watchList/getWatchlist`, getAuthHeaders()),
+    queryFn: () =>
+      fetchData(`${baseURL}/watchList/getWatchlist`, getAuthHeaders()),
   });
-  
+
   useEffect(() => {
     if (data) {
       dispatch(setLikedExercises(data.data.exercises));
     }
   }, [data, dispatch]);
-  
+
   const likedExercises = useSelector((state) => state.exercise.likedExercises);
-  const user = useSelector((state)=>state.auth.userData)
-  const likedExercisesIds = likedExercises?.map((exercise) => exercise.exerciseID);
+  const user = useSelector((state) => state.auth.userData);
+  const likedExercisesIds = likedExercises?.map(
+    (exercise) => exercise.exerciseID
+  );
 
   useEffect(() => {
-
     //if no user empty all likes
     if (!user) {
       setLiked(false);
@@ -62,25 +59,26 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
   }, [likedExercisesIds, exercise.id]);
 
   const toggleLike = async (e: React.ChangeEvent<HTMLInputElement>) => {
-
-
     e.stopPropagation();
-    
+
     //if user instead signup page
     if (!user) {
       navigate("/auth");
       return;
     }
-    
+
     setLiked((prevLiked) => !prevLiked);
 
     if (!liked) {
-      await fetchPostData(`${baseURL}/watchList/addWatchlist`, { exerciseID: exercise.id });
+      await fetchPostData(`${baseURL}/watchList/addWatchlist`, {
+        exerciseID: exercise.id,
+      });
     } else {
-      
-      await fetchPostData(`${baseURL}/watchList/removeWatchlist`, { exerciseID: exercise.id });
+      await fetchPostData(`${baseURL}/watchList/removeWatchlist`, {
+        exerciseID: exercise.id,
+      });
     }
-    refetch();  
+    refetch();
   };
 
   const handleExercise = () => {
@@ -100,18 +98,27 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
         </div>
         <div className="flex justify-between p-8 flex-wrap">
           <div className="flex gap-4 items-center">
-            <Button className="bg-[#FCC757]">{exercise.target.toUpperCase()}</Button>
-            <Button className="bg-[#ee9eab]">{exercise.bodyPart.toUpperCase()}</Button>
+            <Button className="bg-[#FCC757]">
+              {exercise.target.toUpperCase()}
+            </Button>
+            <Button className="bg-[#ee9eab]">
+              {exercise.bodyPart.toUpperCase()}
+            </Button>
           </div>
           <div className="mt-4 sm:mt-0">
             <Button onClick={handleExercise}>View Exercise</Button>
           </div>
-          <div className="absolute top-0 right-0 p-4  mr-2 mt-2">
-          <label className="like-container ">
+          <div
+            className="absolute top-0 right-0 p-3  mr-1    bg-slate-200 "
+            style={{
+              clipPath: "polygon(100% 0, 100% 100%, 49% 53%, 0 100%, 0 0)",
+            }}
+          >
+            <label className="like-container ">
               <input type="checkbox" checked={liked} onChange={toggleLike} />
-              <div className="flex items-center justify-center">
-                {liked ? <FcLike /> : <IoMdHeartEmpty />}
-              </div>
+              
+                {liked ? <FcLike  className="mb-4"/> : <IoMdHeartEmpty className="mb-4" />}
+              
             </label>
           </div>
         </div>

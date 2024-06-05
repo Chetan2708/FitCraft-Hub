@@ -16,7 +16,7 @@ import {
 } from "../../utils/components/ui/avatar";
 import { Button } from "../../utils/components/ui/button";
 import { setLogout } from "../../features/user/authenticationSlice";
-import Swal from "sweetalert2";
+
 import { useNavigate } from "react-router-dom";
 import { resetLikedExercises } from "../../features/exercises/exerciseSlice";
 

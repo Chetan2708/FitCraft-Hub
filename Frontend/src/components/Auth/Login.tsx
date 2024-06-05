@@ -18,7 +18,7 @@ const Login: React.FC<LoginProps> = ({ onLogin , changeTab  }) => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4">
-      <div className="grid md:grid-cols-2 items-center gap-4 max-w-7xl w-full">
+      <div className="flex flex-col-reverse md:flex-row items-center  gap-4 max-w-7xl w-full">
         <div className="border border-gray-300 rounded-md p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
           <form className="space-y-6" onSubmit={handleSubmit(loginData)}>
             <div className="mb-10">
@@ -71,8 +71,8 @@ const Login: React.FC<LoginProps> = ({ onLogin , changeTab  }) => {
             </p>
           </form>
         </div>
-        <div className="lg:h-[400px] md:h-[300px] max-md:mt-10">
-          <img src="https://readymadeui.com/login-image.webp" className="w-full h-full object-cover" alt="Dining Experience" />
+        <div className="max-md:order-1 lg:col-span-2 md:h-screen w-full bg-[#000842] md:rounded-tr-xl md:rounded-br-xl lg:p-12 p-8">
+          <img src="https://readymadeui.com/signin-image.webp" className="lg:w-[70%] w-full h-full object-contain block mx-auto" alt="login-image" />
         </div>
       </div>
     </div>

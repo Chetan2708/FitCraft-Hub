@@ -20,6 +20,8 @@ import { persistStore } from 'redux-persist';
 import BmiCalculator from './components/BmiCalculator.tsx';
 import CustomSceduler from './components/CustomSceduler.tsx';
 import PersonalTrainer from './components/PersonalTrainer.tsx';
+import ComingSoon from './Pages/ComingSoon.tsx';
+import ErrorPage from './Pages/ErrorPage.tsx';
 const router = createBrowserRouter([ 
   {
     path: "/",
@@ -58,15 +60,19 @@ const router = createBrowserRouter([
             element: <CustomSceduler />
           },
           {
-            path: "personal-trainer",
-            element: <PersonalTrainer/>
+            path: "coming-soon",
+            element: <ComingSoon/>
           },
+          // {
+          //   path: "personal-trainer",
+          //   element: <PersonalTrainer/>
+          // },
 
         ],
       },
       {
         path: "*",
-        element: <div>404</div>
+        element: <ErrorPage/>
       }
     ]
   }

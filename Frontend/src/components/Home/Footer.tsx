@@ -66,28 +66,23 @@ const Footer: React.FC = () => (
         <ul className="space-y-4">
           <li>
             <a
-              href="javascript:void(0)"
+              href="mailto:chetangupta12344@gmail.com"
+              target="_blank"
               className="text-gray-300 hover:text-white text-sm"
+              
             >
               Email
             </a>
           </li>
           <li>
             <a
-              href="javascript:void(0)"
+              href="tel:7006596750"
               className="text-gray-300 hover:text-white text-sm"
             >
               Phone
             </a>
           </li>
-          <li>
-            <a
-              href="javascript:void(0)"
-              className="text-gray-300 hover:text-white text-sm"
-            >
-              Address
-            </a>
-          </li>
+          
         </ul>
       </div>
 
@@ -96,28 +91,13 @@ const Footer: React.FC = () => (
         <ul className="space-y-4">
           <li>
             <a
-              href="javascript:void(0)"
+              href="http://chetandevhub.vercel.app"
               className="text-gray-300 hover:text-white text-sm"
             >
               About Us
             </a>
           </li>
-          <li>
-            <a
-              href="javascript:void(0)"
-              className="text-gray-300 hover:text-white text-sm"
-            >
-              Terms &amp; Conditions
-            </a>
-          </li>
-          <li>
-            <a
-              href="javascript:void(0)"
-              className="text-gray-300 hover:text-white text-sm"
-            >
-              Privacy Policy
-            </a>
-          </li>
+        
         </ul>
       </div>
     </div>

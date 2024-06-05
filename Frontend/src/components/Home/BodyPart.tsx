@@ -7,6 +7,7 @@ import { fetchBackendData } from "../../utils/api";
 
 import { Link as ScrollLink } from "react-scroll";
 import { baseURL } from "../../utils/constants";
+import Loader from "../../utils/extras/Loader";
 
 interface BodyPartProps {
   item: string;
@@ -42,6 +43,15 @@ const BodyPart: React.FC<BodyPartProps> = ({ item }) => {
     dispatch(setBodyPart(item));
   };
 
+  if(isLoading){
+    return <div className="flex items-center justify-center">
+      <Loader/>
+      </div>
+  }
+
+  if(error){
+    return <div className="text-red-500 text-center">Error loading data</div>;
+  }
   return (
     <ScrollLink
     to="exercises"
