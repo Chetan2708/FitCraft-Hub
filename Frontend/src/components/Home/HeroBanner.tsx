@@ -3,21 +3,15 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { ImagesSlider } from "../../utils/components/ui/image-slider";
-import HeroBanner1 from "../../assets/images/HeroBanner1.jpg";
-import HeroBanner2 from "../../assets/images/HeroBanner2.jpg";
-import HeroBanner3 from "../../assets/images/HeroBanner3.jpg";
-import HeroBanner4 from "../../assets/images/HeroBanner4.jpg";
-import HeroBanner5 from "../../assets/images/HeroBanner5.jpg";
-import HeroBanner6 from "../../assets/images/HeroBanner6.jpg";
 import { Link as ScrollLink } from "react-scroll";
 const HeroBanner: React.FC = () => {
   const images = [
-    HeroBanner1,
-    HeroBanner2,
-    HeroBanner3,
-    HeroBanner4,
-    HeroBanner5,
-    HeroBanner6,
+    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675654/HeroBanner3_abvdop.jpg",
+    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675653/HeroBanner1_t3acod.jpg",
+    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675642/HeroBanner2_jhrrum.jpg",
+    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675638/HeroBanner4_kkze3i.jpg",
+    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675638/HeroBanner5_pvlzeh.jpg",
+    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675633/HeroBanner6_osuvii.jpg",
   ];
   return (
     <ImagesSlider className="h-[60rem]" images={images}>
