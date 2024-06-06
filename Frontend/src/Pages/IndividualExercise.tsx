@@ -66,7 +66,7 @@ const IndividualExercise:React.FC = () => {
     });
     return null;
   }
-  console.log(youtubeData)
+  
   return (
     <div >
       {exerciseData && <Detail exerciseData={exerciseData} />}
