@@ -41,5 +41,5 @@ const Card: React.FC<{ item: string }> = ({ item }) => {
     </div>
   );
 };
-
+ 
 export default HorizontalScrollBar;
