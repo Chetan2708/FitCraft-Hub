@@ -1,7 +1,5 @@
-"use client";
-import { cn } from "../../lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
-import React, { useEffect, useState, ReactNode } from "react";
+
+import React from "react";
 
 interface ExerciseData {
   bodyPart: string;
