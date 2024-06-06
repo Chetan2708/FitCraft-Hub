@@ -6,7 +6,7 @@ import User from "../models/user.model.js";
 const generateAccessToken = async (userId) => {
   try {
     const user = await User.findById(userId);
-    const accessToken = user.generateAccessToken();
+    const accessToken = user.generateAccessToken(); 
     const refreshToken = user.generateRefreshToken();
 
     user.refreshToken = refreshToken; //Refresh Token is saved in db

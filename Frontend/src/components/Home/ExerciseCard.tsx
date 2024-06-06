@@ -83,6 +83,11 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({ exercise }) => {
   };
 
   const handleExercise = () => {
+    if (!user) {
+      navigate("/auth");
+      return;
+    }
+    
     navigate(`/exercise/${exercise.id}`);
   };
 
