@@ -1,4 +1,4 @@
-"use client";
+
 import { cn } from "../../lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useEffect, useState, ReactNode } from "react";
@@ -72,7 +72,7 @@ export const ImagesSlider: React.FC<ImagesSliderProps> = ({
 
     window.addEventListener("keydown", handleKeyDown);
 
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
     if (autoplay) {
       interval = setInterval(() => {
         handleNext();
@@ -129,10 +129,10 @@ export const ImagesSlider: React.FC<ImagesSliderProps> = ({
       }}
     >
       {loading && (
-      <div className="absolute inset-0 flex items-center justify-center text-white font-semibold bg-black bg-opacity-75">
-        Loading...
-      </div>
-    )}
+        <div className="absolute inset-0 flex items-center justify-center text-white font-semibold bg-black bg-opacity-75">
+          Loading...
+        </div>
+      )}
       {areImagesLoaded && children}
       {areImagesLoaded && overlay && (
         <div
