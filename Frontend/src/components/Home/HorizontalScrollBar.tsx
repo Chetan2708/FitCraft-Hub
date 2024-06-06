@@ -35,7 +35,7 @@ const Card: React.FC<{ item: string }> = ({ item }) => {
   return (
     <div
       key={item}
-      className="group relative h-[300px] w-[450px] overflow-hidden  rounded-2xl shadow-lg"
+      className="group relative h-[200px] w-[200px] sm:h-[300px] sm:w-[450px] overflow-hidden  rounded-2xl shadow-lg"
     >
       <BodyPart item={item} />
     </div>

@@ -72,7 +72,7 @@ const BodyPart: React.FC<BodyPartProps> = ({ item }) => {
           <img src={gym} alt={item} className="size-10" />
         </div>
       </div>
-      <p className="text-center text-[#3A1212] lg:text-2xl lg:font-semibold">
+      <p className="text-center text-[#3A1212] lg:text-2xl font-bold">
         {item.toUpperCase()}
       </p>
     </div>

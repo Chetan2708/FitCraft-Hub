@@ -53,7 +53,7 @@ import { ExerciseType } from "../../definitions";
     };
     return (
       <div className="flex flex-col mt-20 gap-10">
-        <div className="flex flex-col justify-center items-center gap-4 text-4xl lg:text-6xl font-semibold text-center ">
+        <div className="flex flex-col justify-center items-center gap-4 text-4xl lg:text-6xl font-semibold text-center text-[#3A1212] ">
           <p> Awesome Exercises You</p>
           <p>Should Know</p>
         </div>
