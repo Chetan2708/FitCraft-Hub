@@ -6,12 +6,10 @@ import { ImagesSlider } from "../../utils/components/ui/image-slider";
 import { Link as ScrollLink } from "react-scroll";
 const HeroBanner: React.FC = () => {
   const images = [
-    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675654/HeroBanner3_abvdop.jpg",
-    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675653/HeroBanner1_t3acod.jpg",
-    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675642/HeroBanner2_jhrrum.jpg",
-    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675638/HeroBanner4_kkze3i.jpg",
-    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675638/HeroBanner5_pvlzeh.jpg",
-    "https://res.cloudinary.com/dq87rxvyn/image/upload/v1717675633/HeroBanner6_osuvii.jpg",
+    "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+"https://images.unsplash.com/flagged/photo-1564740930826-1aabf6c8a776?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+"https://images.unsplash.com/photo-1507398941214-572c25f4b1dc?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   ];
   return (
     <ImagesSlider className="h-[60rem]" images={images}>

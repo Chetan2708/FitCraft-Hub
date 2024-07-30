@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom"; 
 
 import Home from './Pages/Home.tsx';
 import Auth from './Pages/Auth.tsx';
@@ -78,7 +78,14 @@ const router = createBrowserRouter([
 ]);
 
 const persistor = persistStore(store)
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+      queries: {
+        retry: 2,
+        retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+      },
+    },
+})
 
 
 

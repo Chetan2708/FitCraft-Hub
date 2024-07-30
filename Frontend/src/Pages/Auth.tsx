@@ -43,7 +43,7 @@ const Auth = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      console.log(response);
+   
     } catch (error:any) {
       Swal.fire({
         icon: "error",
