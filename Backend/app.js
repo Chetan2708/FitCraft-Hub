@@ -1,16 +1,17 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import path from "path";
-import { fileURLToPath } from "url";
 
 const app = express();
-app.use(
-  cors({
-    origin: "*",
-    credentials: true,
-  })
-);
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://fit-craft-hub.vercel.app"
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
@@ -23,6 +24,10 @@ import exerciseRouter from "./routes/exercise.routes.js";
 import chatRouter from "./routes/chatRoutes.routes.js";
 
 // Routes Use
+app.get("/", (req, res) => {
+  res.send("🚀 FitCraftHub Backend API is running successfully!");
+});
+
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/watchList", watchListRouter);
 app.use("/api/v1/exerciseData", exerciseRouter);
