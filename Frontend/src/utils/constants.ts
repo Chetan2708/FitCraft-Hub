@@ -2,5 +2,5 @@ export  const exercisedburl = "https://exercisedb.p.rapidapi.com";
 export const youtubeSearchUrl ="https://youtube-search-and-download.p.rapidapi.com";
 
 
-export const baseURL = "http://localhost:5000/api/v1"
+export const baseURL = "https://fitcraft-hub-yb06.onrender.com/api/v1"
 // "http://localhost:5000/api/v1";
